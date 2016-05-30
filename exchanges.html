@@ -3,23 +3,30 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Cotações</title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link href="https://bootswatch.com/darkly/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/jquery.dynatable.css">
 </head>
 <body>
-    <table id="container-table" class="table table-striped table-bordered">
-        <thead>
-            <th>Data</th>
-            <th>Rates</th>
-        </thead>
-        <tbody>
-        </tbody>
-    </table>
-    <div id="container-chart" style="width:100%; height:400px;"></div>
+    <div class="container">
+        <div class="row">
+        <div class="col-md-12">
+                <h1>Câmbio</h1>
+                <ul class="nav nav-pills">
+                  <li role="presentation" class="active" data-filter="USDBRL"><a href="#">Dólar comercial</a></li>
+                  <li role="presentation" data-filter="USDEUR"><a href="#">Euro</a></li>
+                  <li role="presentation" data-filter="USDARS"><a href="#">Peso argentino</a></li>
+                </ul>
+                <br />
+                <div id="container-chart" style="width:100%; height:400px;"></div>
+                <br />
+                <div id="container-table"></div>
+            </div>
+        </div>
+    </div>
 
     <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     <script src="https://code.highcharts.com/stock/highstock.js"></script>
+    <script src="https://code.highcharts.com/modules/data.js"></script>
     <script src="js/jquery.dynatable.js"></script>
     <script src="js/exchanges.js"></script>
 	<script>$(function(){Exchanges.init();});</script>
