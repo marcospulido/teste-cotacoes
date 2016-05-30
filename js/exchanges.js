@@ -82,21 +82,18 @@ Exchanges.filterData = function(filter) {
             initials = "";
         switch (chartTitle) {
             case "BRL":
-                chartTitle = "Dólar comercial";
-                initials = "USD"
+                chartTitle = "Dólar comercial (USD)";
                 break;
             case "EUR":
-                chartTitle = "Euro";
-                initials = "EUR"
+                chartTitle = "Euro (EUR)";
                 break;
             case "ARS":
-                chartTitle = "Peso argentino";
-                initials = "ARS"
+                chartTitle = "Peso argentino (ARS)";
                 break
         }
 
         Exchanges.renderTable("#container-table",objTable);
-        Exchanges.renderChart("#container-chart",chartTitle, initials);
+        Exchanges.renderChart("#container-chart",chartTitle);
         
 }
 
@@ -116,7 +113,7 @@ Exchanges.renderTable = function(container, data) {
     });
 }
 
-Exchanges.renderChart = function(container, title, initials) {
+Exchanges.renderChart = function(container, title) {
     $(container).empty();
     Highcharts.setOptions({
         lang: {
@@ -362,7 +359,7 @@ Exchanges.renderChart = function(container, title, initials) {
         },
         yAxis: {
             labels: {
-                format: '{value:.2f} ' + initials
+                format: '{value:.2f} BRL'
             }
         },
         title: {
