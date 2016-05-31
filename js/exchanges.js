@@ -48,8 +48,6 @@ Exchanges.rates = {
             mm = ((dateAgo.getMonth()+1)<10) ? '0'+(dateAgo.getMonth()+1):(dateAgo.getMonth()+1).toString(), //getMonth retorna jan = 0, fix 0 a esquerda nos meses de digito unico, jan = 01.
             yyyy = dateAgo.getFullYear(),
             dateString = yyyy + '-' + mm + '-' + dd;
-            console.log('http://apilayer.net/api/' + endpoint + '?access_key=' + access_key + '&date=' + dateString + '&currencies=BRL,EUR,ARS&format=1');
-            //debugger;
             $.ajax({
                 url: 'http://apilayer.net/api/' + endpoint + '?access_key=' + access_key + '&date=' + dateString + '&currencies=BRL,EUR,ARS&format=1',
                 type: 'get',
@@ -82,8 +80,6 @@ Exchanges.filterData = function(filter) {
                 var brlRate = data[i].quotes["USDBRL"],
                     convertedRate = brlRate / convertedRate;
             }
-            console.log("data: " + dateFormat +", cotação: " + convertedRate.toFixed(3));
-            debugger;
             objTable[i] ={data: dateFormat , cotação: convertedRate.toFixed(3)};
         }
 
