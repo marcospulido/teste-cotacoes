@@ -25,9 +25,6 @@ Exchanges.rates = {
         var endpoint = 'historical',
             access_key = 'd75b3783c0e1c2c46e612f64825676c3',
             date = typeof date !== 'undefined' ? date : new Date(),
-            dd = date.getDate(),
-            mm = ((date.getMonth()+1)<10) ? '0'+date.getMonth():date.getMonth().toString(), //getMonth retorna jan = 0, fix 0 a esquerda nos meses de digito unico, jan = 01.
-            yyyy = date.getFullYear(),
             period = 7,
 
             removeObjectProperties = function(obj, props) { //remove propriedades não utilizadas do obj retornado no json.
@@ -37,11 +34,21 @@ Exchanges.rates = {
                     }
                 }
             },
-            result = {};
+            result = {},
+            getDateAgo = function(currDate, daysAgo){
+                var dateAgo = new Date(currDate);
+                dateAgo.setDate(dateAgo.getDate()-daysAgo);
+                return dateAgo;
+            };
+
         
         for (var i = period - 1; i >= 0; i--) {
-            var dateString = yyyy + '-' + mm + '-' + (dd - i);
-            
+            var dateAgo = getDateAgo(date, i);
+            dd= dateAgo.getDate();
+            mm = ((dateAgo.getMonth()+1)<10) ? '0'+(dateAgo.getMonth()+1):(dateAgo.getMonth()+1).toString(), //getMonth retorna jan = 0, fix 0 a esquerda nos meses de digito unico, jan = 01.
+            yyyy = dateAgo.getFullYear(),
+            dateString = yyyy + '-' + mm + '-' + dd;
+
             $.ajax({
                 url: 'http://apilayer.net/api/' + endpoint + '?access_key=' + access_key + '&date=' + dateString + '&currencies=BRL,EUR,ARS&format=1',
                 type: 'get',
