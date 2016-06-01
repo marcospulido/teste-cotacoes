@@ -44,10 +44,11 @@ Exchanges.rates = {
         
         for (var i = period - 1; i >= 0; i--) {
             var dateAgo = getDateAgo(date, i);
-            dd= dateAgo.getDate();
+            dd= ((dateAgo.getDate())<10) ? '0'+(dateAgo.getDate()):(dateAgo.getDate()).toString();
             mm = ((dateAgo.getMonth()+1)<10) ? '0'+(dateAgo.getMonth()+1):(dateAgo.getMonth()+1).toString(), //getMonth retorna jan = 0, fix 0 a esquerda nos meses de digito unico, jan = 01.
             yyyy = dateAgo.getFullYear(),
             dateString = yyyy + '-' + mm + '-' + dd;
+            console.log('http://apilayer.net/api/' + endpoint + '?access_key=' + access_key + '&date=' + dateString + '&currencies=BRL,EUR,ARS&format=1');
             $.ajax({
                 url: 'http://apilayer.net/api/' + endpoint + '?access_key=' + access_key + '&date=' + dateString + '&currencies=BRL,EUR,ARS&format=1',
                 type: 'get',
