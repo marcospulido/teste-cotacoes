@@ -7,9 +7,9 @@ Exchanges.init = function() {
     Data = Exchanges.rates.getData();
     Exchanges.filterData();
 
-    $(".nav li").click(function(e){
+    $(".nav li a").click(function(e){
         e.preventDefault();
-        $(".nav li").removeClass("active");
+        $(".nav li a").removeClass("active");
         $(this).addClass("active");
 
         Exchanges.filterData($(this).data("filter"));
