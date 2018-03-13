@@ -23,7 +23,7 @@ Exchanges.rates = {
     },
     getData: function(date) {
         var endpoint = 'historical',
-            access_key = 'd75b3783c0e1c2c46e612f64825676c3',
+            access_key = '855fc69c6893c1f299c6572fd65afcf4',
             date = typeof date !== 'undefined' ? date : new Date(),
             period = 7,
 
@@ -41,7 +41,7 @@ Exchanges.rates = {
                 return dateAgo;
             };
 
-        
+
         for (var i = period - 1; i >= 0; i--) {
             var dateAgo = getDateAgo(date, i);
             dd= ((dateAgo.getDate())<10) ? '0'+(dateAgo.getDate()):(dateAgo.getDate()).toString();
@@ -58,11 +58,11 @@ Exchanges.rates = {
                     removeObjectProperties(data, ["success", "terms","privacy","historical","source"]);
                     result[i] = data;
                 }
-            });                  
+            });
         }
-        
 
-        return result;   
+
+        return result;
     }
 }
 
@@ -100,7 +100,7 @@ Exchanges.filterData = function(filter) {
 
         Exchanges.renderTable("#container-table",objTable);
         Exchanges.renderChart("#container-chart",chartTitle);
-        
+
 }
 
 Exchanges.renderTable = function(container, data) {
@@ -121,7 +121,7 @@ Exchanges.renderTable = function(container, data) {
 
 Exchanges.renderChart = function(container, title) {
     $(container).empty();
-    
+
     $(container).highcharts( {
         data: {
             table: 'container-table'
